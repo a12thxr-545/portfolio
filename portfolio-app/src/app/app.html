@@ -1,0 +1,285 @@
+<div class="portfolio-root">
+
+  <!-- ===== macOS MENU BAR ===== -->
+  <mat-toolbar class="macos-menubar">
+    <div class="menubar-left">
+      <span class="menu-brand">Arthur</span>
+      <span class="menu-sep">/</span>
+      <span class="menu-item-text">Portfolio</span>
+    </div>
+    <span class="spacer"></span>
+    <div class="menubar-right">
+      <span class="clock-text font-mono">{{ clock() }}</span>
+    </div>
+  </mat-toolbar>
+
+  <!-- ===== MAIN DESKTOP ===== -->
+  <div class="desktop">
+
+    <!-- ========== HERO WINDOW ========== -->
+    <section id="home" class="macos-window floating">
+      <div class="window-titlebar">
+        <div class="window-controls">
+          <span class="ctrl ctrl-close"></span>
+          <span class="ctrl ctrl-min"></span>
+          <span class="ctrl ctrl-max"></span>
+        </div>
+        <span class="window-title font-mono">~/arthur — profile.rs</span>
+      </div>
+
+      <div class="window-body hero-body">
+        <!-- Terminal prompt -->
+        <div class="terminal-line font-mono">
+          <span class="t-user">arthur&#64;macbook</span><span class="t-sep">:</span><span class="t-path">~</span><span class="t-dollar"> $ </span><span class="t-cmd">whoami</span>
+        </div>
+
+        <div class="hero-content">
+          <!-- Avatar -->
+          <div class="hero-avatar-wrap">
+            <div class="hero-avatar">
+              <img src="avatar.png" alt="Arthur" class="avatar-photo" />
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="hero-text">
+            <p class="hero-greeting">Hello, World!</p>
+            <h1 class="hero-name">I'm <span class="name-highlight">Arthur</span></h1>
+            <p class="hero-role">
+              Computer Science Student &nbsp;·&nbsp; Systems Developer
+            </p>
+            <p class="hero-bio">
+              Passionate about building fast, reliable software with
+              @for (tech of techStack; track tech.name) {
+                <span class="tech-pill" [class]="tech.class">{{ tech.name }}</span>
+              }
+              . When not coding, you'll find me watching Liverpool or cheering for Ferrari at circuit time.
+            </p>
+            <div class="hero-cta">
+              <button mat-raised-button class="btn-primary" (click)="scrollTo('projects')">
+                View Projects
+              </button>
+              <button mat-stroked-button class="btn-ghost" (click)="scrollTo('contact')">
+                Contact Me
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS WINDOW ========== -->
+    <section id="skills" class="macos-window floating-d1">
+      <div class="window-titlebar">
+        <div class="window-controls">
+          <span class="ctrl ctrl-close"></span>
+          <span class="ctrl ctrl-min"></span>
+          <span class="ctrl ctrl-max"></span>
+        </div>
+        <span class="window-title font-mono">~/arthur — skills.toml</span>
+      </div>
+
+      <div class="window-body">
+        <div class="section-header">
+          <h2 class="section-title">Tech Stack</h2>
+          <p class="section-sub font-mono">Languages &amp; Frameworks I love</p>
+        </div>
+
+        <div class="skills-grid">
+          @for (skill of skills; track skill.name) {
+            <div class="skill-card" matRipple>
+              <div class="skill-top">
+                <div class="skill-meta">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-level font-mono">{{ skill.category }}</span>
+                </div>
+                <span class="skill-pct font-mono">{{ skill.level }}%</span>
+              </div>
+              <mat-progress-bar
+                mode="determinate"
+                [value]="skill.level"
+                [class]="'bar-' + skill.colorClass"
+              ></mat-progress-bar>
+            </div>
+          }
+        </div>
+
+        <!-- Currently studying -->
+        <div class="studying-row">
+          <span class="study-label font-mono">currently_studying:</span>
+          <mat-chip-set>
+            @for (item of studying; track item) {
+              <mat-chip class="study-chip">{{ item }}</mat-chip>
+            }
+          </mat-chip-set>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS WINDOW ========== -->
+    <section id="projects" class="macos-window floating-d2">
+      <div class="window-titlebar">
+        <div class="window-controls">
+          <span class="ctrl ctrl-close"></span>
+          <span class="ctrl ctrl-min"></span>
+          <span class="ctrl ctrl-max"></span>
+        </div>
+        <span class="window-title font-mono">~/arthur/projects — ls -la</span>
+      </div>
+
+      <div class="window-body">
+        <div class="section-header">
+          <h2 class="section-title">Projects</h2>
+          <p class="section-sub font-mono">Things I've built &amp; shipped</p>
+        </div>
+
+        <div class="projects-grid">
+          @for (proj of projects; track proj.name) {
+            <div class="project-card" [class.project-wip]="!proj.active" matRipple>
+              <div class="project-tags">
+                @for (tag of proj.tags; track tag) {
+                  <span class="proj-tag" [class]="getTagClass(tag)">{{ tag }}</span>
+                }
+              </div>
+              <h3 class="project-name">{{ proj.name }}</h3>
+              <p class="project-desc">{{ proj.desc }}</p>
+              <div class="project-footer">
+                <span class="proj-status-text font-mono" [style.color]="proj.statusColor">{{ proj.status }}</span>
+                <a [href]="proj.repo" target="_blank" rel="noopener">
+                  <button mat-button class="view-btn">View Repo →</button>
+                </a>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PASSIONS WINDOW ========== -->
+    <section id="passions" class="macos-window floating-d3">
+      <div class="window-titlebar">
+        <div class="window-controls">
+          <span class="ctrl ctrl-close"></span>
+          <span class="ctrl ctrl-min"></span>
+          <span class="ctrl ctrl-max"></span>
+        </div>
+        <span class="window-title font-mono">~/arthur — passions.json</span>
+      </div>
+
+      <div class="window-body passions-body">
+        <div class="section-header">
+          <h2 class="section-title">Beyond Code</h2>
+          <p class="section-sub font-mono">What drives me off the keyboard</p>
+        </div>
+
+        <!-- Football -->
+        <div class="passion-card passion-football" matRipple>
+          <div class="passion-label font-mono">FOOTBALL</div>
+          <div class="passion-visual">
+            <div class="sport-emblem lfc-emblem">
+              <span class="emblem-label">LFC</span>
+            </div>
+            <div class="passion-info">
+              <h3 class="passion-name lfc-name">Liverpool FC</h3>
+              <p class="passion-quote">"You'll Never Walk Alone"</p>
+              <div class="passion-tags">
+                <span class="p-tag">The Reds</span>
+                <span class="p-tag">Champions</span>
+                <span class="p-tag">Anfield</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formula 1 -->
+        <div class="passion-card passion-f1" matRipple>
+          <div class="passion-label font-mono">FORMULA 1</div>
+
+          <!-- Teams -->
+          <div class="f1-sub-label font-mono">teams</div>
+          <div class="f1-teams-grid">
+            @for (team of f1Teams; track team.name) {
+              <div class="f1-team-card">
+                <span class="f1-team-short font-mono">{{ team.short }}</span>
+                <span class="f1-team-name">{{ team.name }}</span>
+              </div>
+            }
+          </div>
+
+          <!-- Drivers -->
+          <div class="f1-sub-label font-mono" style="margin-top:14px">favourite drivers</div>
+          <div class="drivers-list">
+            @for (driver of drivers; track driver.number) {
+              <div class="driver-item">
+                <span class="driver-number font-mono">#{{ driver.number }}</span>
+                <div class="driver-info">
+                  <span class="driver-name">{{ driver.name }}</span>
+                  <span class="driver-country font-mono">{{ driver.flag }} {{ driver.country }} · {{ driver.team }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT WINDOW ========== -->
+    <section id="contact" class="macos-window floating-d4">
+      <div class="window-titlebar">
+        <div class="window-controls">
+          <span class="ctrl ctrl-close"></span>
+          <span class="ctrl ctrl-min"></span>
+          <span class="ctrl ctrl-max"></span>
+        </div>
+        <span class="window-title font-mono">~/arthur — contact.sh</span>
+      </div>
+
+      <div class="window-body">
+        <div class="section-header">
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-sub font-mono">Let's build something great together</p>
+        </div>
+
+        <div class="terminal-contact font-mono">
+          @for (item of contactItems; track item.key) {
+            <div class="tc-line">
+              <span class="tc-key">{{ item.key }}</span>
+              <span class="tc-arrow"> → </span>
+              @if (item.link) {
+                <a [href]="item.link" class="tc-val tc-link">{{ item.value }}</a>
+              } @else {
+                <span class="tc-val" [class.tc-status]="item['highlight']">{{ item.value }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="contact-actions">
+          <a href="mailto:arthxr545@gmail.com">
+            <button mat-raised-button class="btn-primary">Send Email</button>
+          </a>
+          <a href="https://github.com/a12thxr-545" target="_blank" rel="noopener">
+            <button mat-stroked-button class="btn-ghost">GitHub Profile</button>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== macOS DOCK ===== -->
+  <nav class="macos-dock">
+    @for (item of dockItems; track item.id) {
+      <button
+        class="dock-btn"
+        [class.dock-active]="activeSection() === item.id"
+        (click)="scrollTo(item.id)"
+        [matTooltip]="item.label"
+        matTooltipPosition="above"
+        matRipple
+      >
+        <span class="dock-label font-mono">{{ item.label | slice:0:2 }}</span>
+      </button>
+    }
+  </nav>
+
+</div>

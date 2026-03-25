@@ -1,0 +1,644 @@
+// =============================================
+// MONOCHROME — Black / White / Gray only
+// =============================================
+
+$bg:         #111111;
+$bg-surface: #191919;
+$bg-card:    rgba(25, 25, 25, 0.9);
+$text-1:     #f0f0f0;
+$text-2:     #9a9a9a;
+$text-3:     #505050;
+$border:     rgba(255,255,255,0.07);
+$border-md:  rgba(255,255,255,0.12);
+$white:      #ffffff;
+$mono:       'JetBrains Mono', monospace;
+
+// =============================================
+// Root & Reset
+// =============================================
+.portfolio-root {
+  min-height: 100vh;
+  background: $bg;
+  color: $text-1;
+  overflow-x: hidden;
+  position: relative;
+}
+
+// =============================================
+// macOS Menu Bar
+// =============================================
+.macos-menubar {
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  height: 30px !important;
+  min-height: 30px !important;
+  padding: 0 20px !important;
+  background: rgba(10,10,10,0.95) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid $border !important;
+  z-index: 9999;
+  display: flex !important;
+  align-items: center !important;
+
+  .menubar-left {
+    display: flex; align-items: center; gap: 8px;
+    .menu-brand { font-size: 12px; font-weight: 800; color: $text-1; letter-spacing: 0.3px; }
+    .menu-sep   { color: $text-3; font-size: 12px; }
+    .menu-item-text { font-size: 12px; color: $text-3; cursor: default; }
+  }
+  .spacer { flex: 1; }
+  .menubar-right {
+    .clock-text { font-size: 11px; font-weight: 600; color: $text-2; font-family: $mono; }
+  }
+}
+
+// =============================================
+// Desktop layout
+// =============================================
+.desktop {
+  padding: calc(30px + 24px) 24px calc(72px + 24px);
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// =============================================
+// Window Shell
+// =============================================
+.macos-window {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  transition: border-color 0.25s;
+
+  &:hover { border-color: $border-md; }
+}
+
+.window-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid $border;
+}
+
+.window-controls { display: flex; gap: 7px; }
+.ctrl {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.ctrl-close { background: #ff5f56; }
+.ctrl-min   { background: #ffbd2e; }
+.ctrl-max   { background: #27c93f; }
+
+.window-title {
+  font-size: 11px;
+  color: $text-3;
+  font-family: $mono;
+  letter-spacing: 0.2px;
+}
+.window-body { padding: 24px; }
+.font-mono   { font-family: $mono !important; }
+
+// Float animations (subtle)
+.floating    { animation: floatWin 9s   ease-in-out infinite; }
+.floating-d1 { animation: floatWin 10s  ease-in-out infinite; animation-delay: -2s; }
+.floating-d2 { animation: floatWin 8.5s ease-in-out infinite; animation-delay: -4s; }
+.floating-d3 { animation: floatWin 9.5s ease-in-out infinite; animation-delay: -3s; }
+.floating-d4 { animation: floatWin 8s   ease-in-out infinite; animation-delay: -5s; }
+
+@keyframes floatWin {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+// =============================================
+// Hero
+// =============================================
+.hero-body { padding: 28px 24px; }
+
+.terminal-line {
+  font-family: $mono;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid $border;
+  border-radius: 7px;
+  width: fit-content;
+  color: $text-2;
+
+  .t-user   { color: $text-1; font-weight: 700; }
+  .t-sep    { color: $text-3; }
+  .t-path   { color: $text-2; }
+  .t-dollar { color: $text-3; }
+  .t-cmd    {
+    color: $text-1;
+    overflow: hidden; white-space: nowrap; width: 0;
+    animation: typeCmd 1s steps(6) 0.5s forwards;
+  }
+}
+@keyframes typeCmd { to { width: 6ch; } }
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.hero-avatar-wrap { flex-shrink: 0; position: relative; }
+
+.hero-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid $border-md;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+
+  .avatar-photo {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 35% 20%;
+    display: block;
+  }
+}
+
+.hero-text { flex: 1; min-width: 260px; }
+
+.hero-greeting {
+  font-size: 12px;
+  font-family: $mono;
+  color: $text-3;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.hero-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  color: $text-1;
+  margin-bottom: 10px;
+  .name-highlight { color: $white; }
+}
+
+.hero-role {
+  font-size: 13px;
+  color: $text-2;
+  margin-bottom: 16px;
+}
+
+.hero-bio {
+  font-size: 14px;
+  line-height: 1.75;
+  color: $text-2;
+  margin-bottom: 24px;
+  max-width: 500px;
+}
+
+.tech-pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: $mono;
+  margin: 0 3px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid $border-md;
+  color: $text-1;
+}
+
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-primary {
+  background: $white !important;
+  color: $bg !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  letter-spacing: 0.2px !important;
+  transition: all 0.2s !important;
+  &:hover { background: #e0e0e0 !important; transform: translateY(-1px); }
+}
+
+.btn-ghost {
+  color: $text-2 !important;
+  border-color: $border-md !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  transition: all 0.2s !important;
+  &:hover { color: $text-1 !important; border-color: rgba(255,255,255,0.2) !important; background: rgba(255,255,255,0.04) !important; }
+}
+
+// =============================================
+// Section Header
+// =============================================
+.section-header { margin-bottom: 20px; }
+.section-title { font-size: 18px; font-weight: 800; margin: 0 0 4px; color: $text-1; letter-spacing: -0.5px; }
+.section-sub   { font-size: 11px; color: $text-3; margin: 0; }
+
+// =============================================
+// Skills
+// =============================================
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.skill-card {
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid $border;
+  border-radius: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover { background: rgba(255,255,255,0.04); border-color: $border-md; }
+}
+
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.skill-name  { font-size: 13px; font-weight: 700; color: $text-1; display: block; margin-bottom: 2px; }
+.skill-level { font-size: 10px; color: $text-3; }
+.skill-pct   { font-size: 11px; color: $text-3; font-family: $mono; }
+
+::ng-deep {
+  .mat-mdc-progress-bar { height: 2px !important; border-radius: 99px !important; }
+  .mat-mdc-progress-bar .mdc-linear-progress__bar-inner { border-color: rgba(255,255,255,0.5) !important; }
+  .mdc-linear-progress__buffer { background: rgba(255,255,255,0.06) !important; }
+}
+
+.studying-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid $border;
+  border-radius: 8px;
+  .study-label { font-size: 11px; color: $text-3; white-space: nowrap; }
+}
+
+::ng-deep .study-chip {
+  background: rgba(255,255,255,0.06) !important;
+  color: $text-2 !important;
+  border: 1px solid $border !important;
+  font-family: $mono !important;
+  font-size: 11px !important;
+  height: 24px !important;
+}
+
+// =============================================
+// Projects
+// =============================================
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.project-card {
+  padding: 18px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid $border;
+  border-radius: 12px;
+  transition: all 0.25s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  &:hover { background: rgba(255,255,255,0.04); border-color: $border-md; transform: translateY(-2px); }
+  &.project-wip { opacity: 0.5; border-style: dashed; }
+}
+
+.project-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.proj-tag {
+  font-size: 10px;
+  font-family: $mono;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  color: $text-2;
+  border: 1px solid $border;
+}
+
+.project-name { font-size: 15px; font-weight: 800; color: $text-1; margin: 0 0 8px; }
+.project-desc { font-size: 13px; color: $text-2; line-height: 1.65; flex: 1; margin-bottom: 14px; }
+.project-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid $border; padding-top: 12px; }
+.proj-status-text { font-size: 11px; font-family: $mono; }
+.view-btn { color: $text-2 !important; font-size: 12px !important; font-weight: 600 !important; padding: 0 !important; min-width: 0 !important; }
+
+// =============================================
+// Passions
+// =============================================
+.passions-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+
+.passion-card {
+  padding: 20px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid $border;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s;
+  &:hover { background: rgba(255,255,255,0.04); border-color: $border-md; }
+}
+
+.passion-label {
+  font-size: 10px;
+  color: $text-3;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.passion-visual { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+.sport-emblem {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.08);
+  .emblem-label { font-size: 14px; font-weight: 900; font-family: $mono; letter-spacing: 2px; }
+}
+
+.lfc-emblem     { background: rgba(255,255,255,0.05); border-color: $border-md; .emblem-label { color: $text-1; } }
+.ferrari-emblem { background: rgba(255,255,255,0.04); border-color: $border-md; .emblem-label { color: $text-2; } }
+
+.passion-info { flex: 1; min-width: 200px; }
+
+.passion-name {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  color: $text-1;
+  &.lfc-name     { color: $text-1; }
+  &.ferrari-name { color: $text-1; }
+}
+
+.passion-quote { font-size: 13px; color: $text-2; font-style: italic; margin-bottom: 14px; }
+
+.passion-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.p-tag {
+  font-size: 10px;
+  font-family: $mono;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid $border;
+  color: $text-3;
+}
+
+.drivers-list { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.driver-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid $border;
+  border-radius: 8px;
+  transition: all 0.2s;
+  &:hover { background: rgba(255,255,255,0.04); }
+}
+.driver-number { font-size: 14px; font-weight: 900; color: $text-3; min-width: 36px; font-family: $mono; }
+.driver-info   { display: flex; flex-direction: column; }
+.driver-name   { font-size: 13px; font-weight: 700; color: $text-1; }
+.driver-country{ font-size: 11px; color: $text-3; font-family: $mono; }
+
+// F1 sub-sections
+.f1-sub-label {
+  font-size: 10px;
+  color: $text-3;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+
+.f1-teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.f1-team-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid $border;
+  border-radius: 8px;
+  transition: all 0.2s;
+  &:hover { background: rgba(255,255,255,0.04); border-color: $border-md; }
+}
+.f1-team-short { font-size: 12px; font-weight: 900; color: $text-2; font-family: $mono; min-width: 36px; }
+.f1-team-name  { font-size: 12px; color: $text-1; font-weight: 600; }
+
+
+// =============================================
+// Contact
+// =============================================
+.terminal-contact {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  position: relative;
+
+  &::before {
+    content: 'contact.sh';
+    position: absolute;
+    top: -8px; left: 14px;
+    font-size: 10px;
+    color: $text-3;
+    background: $bg-card;
+    padding: 0 6px;
+    font-family: $mono;
+  }
+}
+
+.tc-line   { display: flex; align-items: center; flex-wrap: wrap; }
+.tc-key    { color: $text-2; font-weight: 700; min-width: 80px; }
+.tc-arrow  { color: $text-3; margin: 0 8px; }
+.tc-val    { color: $text-1; }
+.tc-link   { &:hover { color: $white; text-decoration: underline; } }
+.tc-status { color: #6ee7b7 !important; }
+
+.contact-actions { display: flex; gap: 12px; flex-wrap: wrap; a { display: inline-block; } }
+
+// =============================================
+// macOS Dock
+// =============================================
+.macos-dock {
+  position: fixed;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15,15,15,0.9);
+  backdrop-filter: blur(24px);
+  border: 1px solid $border;
+  border-radius: 16px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 9998;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+}
+
+.dock-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid $border !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  transition: all 0.2s ease !important;
+  min-width: 40px !important;
+  padding: 0 !important;
+  color: $text-3 !important;
+
+  .dock-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $text-3;
+    transition: color 0.2s;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.15);
+    background: rgba(255,255,255,0.08) !important;
+    border-color: $border-md !important;
+    .dock-label { color: $text-1; }
+  }
+
+  &.dock-active {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.18) !important;
+    .dock-label { color: $white; }
+  }
+}
+
+// =============================================
+// Responsive — Desktop / iPad / Mobile
+// =============================================
+
+// tc-status pure gray
+.tc-status { color: #e0e0e0 !important; }
+
+// ── Large Desktop (> 1200px) ────────────────
+@media (min-width: 1200px) {
+  .desktop         { max-width: 1080px; padding: calc(30px + 32px) 40px calc(72px + 32px); gap: 24px; }
+  .hero-avatar     { width: 140px; height: 140px; }
+  .skills-grid     { grid-template-columns: repeat(4, 1fr); }
+  .projects-grid   { grid-template-columns: repeat(3, 1fr); }
+}
+
+// ── Tablet / iPad (768px – 1024px) ──────────
+@media (max-width: 1024px) and (min-width: 768px) {
+  .desktop         { padding: calc(30px + 20px) 20px calc(68px + 20px); gap: 18px; }
+  .hero-content    { gap: 24px; }
+  .hero-avatar     { width: 110px; height: 110px; }
+  .hero-name       { font-size: 2.4rem; letter-spacing: -1px; }
+  .skills-grid     { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid   { grid-template-columns: repeat(2, 1fr); }
+  .sport-emblem    { width: 64px; height: 64px; }
+  .macos-dock      { padding: 9px 14px; gap: 5px; }
+  .dock-btn        { width: 38px !important; height: 38px !important; min-width: 38px !important; }
+}
+
+// ── Mobile (< 768px) ────────────────────────
+@media (max-width: 767px) {
+  .desktop         { padding: calc(30px + 14px) 12px calc(66px + 14px); gap: 14px; }
+  .window-body     { padding: 16px; }
+  .window-titlebar { padding: 8px 12px; }
+  .window-title    { font-size: 10px; }
+  .menu-item-text,
+  .menu-sep        { display: none; }
+
+  // Hero
+  .hero-body       { padding: 18px 16px; }
+  .hero-content    { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .hero-avatar     { width: 88px !important; height: 88px !important; }
+  .hero-name       { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+  .hero-bio        { font-size: 13px; }
+  .terminal-line   { font-size: 11px; padding: 6px 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .hero-cta        { gap: 8px; }
+
+  // Skills
+  .skills-grid     { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .skill-card      { padding: 12px; }
+
+  // Projects
+  .projects-grid   { grid-template-columns: 1fr; gap: 12px; }
+
+  // Passions
+  .passions-body   { padding: 16px; gap: 12px; }
+  .passion-card    { padding: 16px; }
+  .passion-visual  { flex-direction: row; align-items: flex-start; gap: 14px; }
+  .sport-emblem    { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; }
+  .passion-name    { font-size: 15px; }
+  .driver-item     { padding: 8px 12px; }
+
+  // Contact
+  .terminal-contact { font-size: 12px; padding: 14px; }
+  .tc-key           { min-width: 70px; }
+  .contact-actions  { flex-direction: column; gap: 8px;
+    a { width: 100%; }
+    button { width: 100% !important; }
+  }
+
+  // Dock
+  .macos-dock      { padding: 8px 10px; gap: 4px; bottom: 10px; border-radius: 14px; }
+  .dock-btn        { width: 34px !important; height: 34px !important; min-width: 34px !important; border-radius: 8px !important;
+    &:hover { transform: translateY(-6px) scale(1.1); }
+  }
+  .dock-label      { font-size: 8px !important; }
+}
+
+// ── Mobile S (< 400px) ──────────────────────
+@media (max-width: 400px) {
+  .desktop       { padding: calc(30px + 10px) 10px calc(60px + 10px); gap: 12px; }
+  .skills-grid   { grid-template-columns: 1fr; }
+  .hero-avatar   { width: 76px !important; height: 76px !important; }
+  .hero-name     { font-size: 1.7rem; }
+  .passion-visual{ flex-direction: column; }
+  .macos-dock    { padding: 7px 8px; gap: 3px; }
+  .dock-btn      { width: 30px !important; height: 30px !important; min-width: 30px !important; }
+}
+
