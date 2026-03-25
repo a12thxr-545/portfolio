@@ -5,7 +5,7 @@
       @for (word of helloWords; track word; let i = $index) {
         <span
           class="hello-word"
-          [style.animation-delay]="(i * 0.18) + 's'"
+          [style.animation-delay]="(i * 0.5) + 's'"
           [style.--idx]="i"
         >{{ word }}</span>
       }

@@ -44,38 +44,23 @@ $mono:       'JetBrains Mono', monospace;
 
 .hello-word {
   position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   font-size: clamp(3rem, 10vw, 7rem);
   font-weight: 700;
   color: #fff;
   letter-spacing: -2px;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   opacity: 0;
-  animation: helloFloat 2.8s ease forwards;
+  animation: helloWord 0.5s ease forwards;
   white-space: nowrap;
-
-  // Each word fans out to different positions
-  &:nth-child(1)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(2)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(3)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(4)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(5)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(6)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(7)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(8)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(9)  { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(10) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(11) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(12) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(13) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(14) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  &:nth-child(15) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 }
 
-@keyframes helloFloat {
-  0%   { opacity: 0; transform: translate(-50%, calc(-50% + 20px)) scale(0.97); }
-  12%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  70%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, calc(-50% - 16px)) scale(1.02); }
+@keyframes helloWord {
+  0%   { opacity: 0; transform: translate(-50%, calc(-50% + 14px)); }
+  25%  { opacity: 1; transform: translate(-50%, -50%); }
+  75%  { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, calc(-50% - 10px)); }
 }
 
 // =============================================

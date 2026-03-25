@@ -162,9 +162,9 @@ export class App implements OnInit {
     this.updateClock();
     setInterval(() => this.updateClock(), 10000);
 
-    // Apple Hello intro: fade out after 3.2s, hide after 4.2s
-    setTimeout(() => this.introFadingOut.set(true), 3200);
-    setTimeout(() => this.showIntro.set(false), 4200);
+    // Apple Hello intro: 15 words × 0.5s = 7.5s, fade at 7s, hide at 8s
+    setTimeout(() => this.introFadingOut.set(true), 7000);
+    setTimeout(() => this.showIntro.set(false), 8000);
   }
 
   updateClock() {
