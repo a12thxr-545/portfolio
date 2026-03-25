@@ -332,9 +332,18 @@ $mono:       'JetBrains Mono', monospace;
 .skill-pct   { font-size: 11px; color: $text-3; font-family: $mono; }
 
 ::ng-deep {
-  .mat-mdc-progress-bar { height: 2px !important; border-radius: 99px !important; }
-  .mat-mdc-progress-bar .mdc-linear-progress__bar-inner { border-color: rgba(255,255,255,0.5) !important; }
-  .mdc-linear-progress__buffer { background: rgba(255,255,255,0.06) !important; }
+  .mat-mdc-progress-bar {
+    height: 2px !important;
+    border-radius: 99px !important;
+    --mdc-linear-progress-active-indicator-color: rgba(255,255,255,0.7) !important;
+    --mdc-linear-progress-track-color: rgba(255,255,255,0.06) !important;
+  }
+  .mat-mdc-progress-bar .mdc-linear-progress__bar-inner {
+    border-color: rgba(255,255,255,0.7) !important;
+    background-color: rgba(255,255,255,0.7) !important;
+  }
+  .mdc-linear-progress__buffer-bar { background: rgba(255,255,255,0.06) !important; }
+  .mdc-linear-progress__buffer     { background: transparent !important; }
 }
 
 .studying-row {

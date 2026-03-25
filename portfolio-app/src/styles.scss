@@ -7,7 +7,7 @@
 $my-primary: mat.define-theme((
   color: (
     theme-type: dark,
-    primary: mat.$red-palette,
+    primary: mat.$azure-palette,
   ),
   typography: (
     brand-family: 'Inter, system-ui, sans-serif',
@@ -65,8 +65,8 @@ html, body {
 // Scrollbar
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(200, 16, 46, 0.3); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(200, 16, 46, 0.5); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
 
 // Material overrides
 .mat-mdc-card {
@@ -87,3 +87,13 @@ html, body {
 }
 
 a { text-decoration: none; color: inherit; }
+
+// Force progress bar white globally
+.mdc-linear-progress__bar-inner {
+  border-color: rgba(255,255,255,0.7) !important;
+  background-color: rgba(255,255,255,0.7) !important;
+}
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: rgba(255,255,255,0.7) !important;
+  --mdc-linear-progress-track-color: rgba(255,255,255,0.06) !important;
+}
