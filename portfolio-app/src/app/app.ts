@@ -70,6 +70,15 @@ export interface F1Team {
 export class App implements OnInit {
   clock = signal('23:09');
   activeSection = signal('home');
+  showIntro = signal(true);
+  introFadingOut = signal(false);
+
+  // Apple-style hello in many languages
+  helloWords = [
+    'สวัสดี', 'Hello', 'こんにちは', '안녕하세요', 'Hola',
+    'Bonjour', 'Ciao', 'Xin chào', 'مرحبا', 'Hallo',
+    'Olá', 'Привет', '你好', 'Merhaba', 'Namaste'
+  ];
 
   skills: Skill[] = [
     { name: 'Rust', category: 'Systems / Backend', level: 80, icon: 'memory', colorClass: 'rust' },
@@ -152,6 +161,10 @@ export class App implements OnInit {
   ngOnInit() {
     this.updateClock();
     setInterval(() => this.updateClock(), 10000);
+
+    // Apple Hello intro: fade out after 3.2s, hide after 4.2s
+    setTimeout(() => this.introFadingOut.set(true), 3200);
+    setTimeout(() => this.showIntro.set(false), 4200);
   }
 
   updateClock() {
