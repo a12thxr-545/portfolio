@@ -1,6 +1,6 @@
 <!-- ===== APPLE HELLO INTRO ===== -->
 @if (showIntro()) {
-  <div class="hello-overlay" [class.hello-fade-out]="introFadingOut()">
+  <div class="hello-overlay" [class.hello-fade-out]="introFadingOut()" (click)="skipIntro()">
     <div class="hello-words">
       @for (word of helloWords; track word; let i = $index) {
         <span

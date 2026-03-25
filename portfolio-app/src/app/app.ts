@@ -180,6 +180,11 @@ export class App implements OnInit {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  skipIntro() {
+    this.introFadingOut.set(true);
+    setTimeout(() => this.showIntro.set(false), 800);
+  }
+
   getTagClass(tag: string): string {
     if (tag === 'Rust') return 'tag-rust';
     if (tag === 'Angular') return 'tag-angular';

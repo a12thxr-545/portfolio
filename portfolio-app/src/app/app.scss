@@ -31,6 +31,7 @@ $mono:       'JetBrains Mono', monospace;
     opacity: 0;
     pointer-events: none;
   }
+  cursor: pointer;
 }
 
 .hello-words {
@@ -551,7 +552,7 @@ $mono:       'JetBrains Mono', monospace;
 .tc-arrow  { color: $text-3; margin: 0 8px; }
 .tc-val    { color: $text-1; }
 .tc-link   { &:hover { color: $white; text-decoration: underline; } }
-.tc-status { color: #6ee7b7 !important; }
+.tc-status { color: $text-2 !important; }
 
 .contact-actions { display: flex; gap: 12px; flex-wrap: wrap; a { display: inline-block; } }
 
